@@ -6,11 +6,92 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <h1>Hello There</h1>
-    
+    <main>
+    <div id="container">
+
+      <div id="display">
+        <div id="displayToday">
+          <div id="temp"><h1>91&#176;</h1></div>
+          <div>
+            <p class="location" id="inputLocationResult">Fort Myers</p>
+            <p class="location" id="todayDate">Todays Date</p>
+          </div>
+        </div>
+
+        <div id="displayWeek">
+          <div class="weekForcast" id="dayPlus1">
+            <p><span class="futDay"></span></p>
+            <p>icon</p>
+            <p>Temp: <span class="futTemp"></span>&#176;</p>
+            <p>Wind: <span class="futWind"></span> MPH</p>
+            <p>Humidity: <span class="futHum"></span>%</p>
+          </div>
+          <div class="weekForcast" id="dayPlus2">
+            <p><span class="futDay"></span></p>
+            <p>icon</p>
+            <p>Temp: <span class="futTemp"></span>&#176;</p>
+            <p>Wind: <span class="futWind"></span> MPH</p>
+            <p>Humidity: <span class="futHum"></span>%</p>
+          </div>
+          <div class="weekForcast" id="dayPlus3">
+            <p><span class="futDay"></span></p>
+            <p>icon</p>
+            <p>Temp: <span class="futTemp"></span>&#176;</p>
+            <p>Wind: <span class="futWind"></span> MPH</p>
+            <p>Humidity: <span class="futHum"></span>%</p>
+          </div>
+          <div class="weekForcast" id="dayPlus4">
+            <p><span class="futDay"></span></p>
+            <p>icon</p>
+            <p>Temp: <span class="futTemp"></span>&#176;</p>
+            <p>Wind: <span class="futWind"></span> MPH</p>
+            <p>Humidity: <span class="futHum"></span>%</p>
+          </div>
+          <div class="weekForcast" id="dayPlus5">
+            <p><span class="futDay"></span></p>
+            <p>icon</p>
+            <p>Temp: <span class="futTemp"></span>&#176;</p>
+            <p>Wind: <span class="futWind"></span> MPH</p>
+            <p>Humidity: <span class="futHum"></span>%</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="search">
+        <div id="searchBar">
+          <input type="text" placeholder="Enter City Name" aria-label="Location Search" aria-describedby="button-addon2" id="searchInput">
+          <button class="btn" type="button" id="searchButton"></button>
+        </div>
+        <div id="previousSearchDiv">
+          <p>Sacramento</p>
+          <p>Sacramento</p>
+          <p>Sacramento</p>
+          <p>Sacramento</p>
+          <p>Sacramento</p>
+          <p>Sacramento</p>
+          <p>Sacramento</p>
+        </div>
+        <div id="todayWeatherDetails">
+          <h6>Weather Details</h6>
+          <p><span>Cloudy</span><span id="cloudy">partly cloudy</span></p>
+          <p><span>Humidity</span><span id="humidity">93</span></p>
+          <p><span>Wind Speed</span><span id="wind">4 MPH</span></p>
+        </div>
+      </div>
+
+
+    </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script>
     <script src="./assets/js/script.js" async defer></script>
   </body>
 </html>
