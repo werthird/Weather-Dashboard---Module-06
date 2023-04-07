@@ -7,7 +7,6 @@ const searchButton = document.querySelector('#searchButton');
 
 
 
-
 /* ===================================================================================
 ---------------       GLOBAL VARIABLES         ---------------
 ====================================================================================*/
@@ -21,15 +20,19 @@ let futureUrl = '';
 ====================================================================================*/
 const apiKey = '&appid=22b97e12deae4f08e623737be9a71ec0';
 const currentWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&q=';
-const futureWeatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?units=imperial&'
+const futureWeatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=';
+
 
 
 /* ===================================================================================
----------------       COORDINATES VARIABLES         ---------------
+---------------       CLOCK FUNCTION         ---------------
 ====================================================================================*/
-let lon = '';
-let lat = '';
-
+$(document).ready(function() {
+  setInterval(function () {
+    let clock = dayjs().format('h:mm:ss dddd, MMM DD, YYYY');
+    $('#todayDate').text(clock);
+  }, 1000);
+});
 
 
 /* ===================================================================================
@@ -70,12 +73,8 @@ async function checkCurrentWeather() {
   $('#cloudy').text(data.weather[0].description);
   $('#wind').text(data.wind.speed.toFixed(1) + ' MPH');
 
-  // add lat and lon to variable; change to strings
-  lon = data.coord.lon.toString();
-  lat = data.coord.lat.toString();
-
   //construct furtureUrl
-  futureUrl = `${futureWeatherUrl}lat=${lat}&lon=${lon}${apiKey}`
+  futureUrl = `${futureWeatherUrl}${cityName}${apiKey}`
   console.log(futureUrl);
 
   checkFutureWeather();
@@ -93,9 +92,17 @@ async function checkFutureWeather() {
   let data = await response.json();
 
   //loop through each future day div and append weather
-  for (let i=0; i<6; i++) {
+  for (let i=0; i<5; i++) {
+    const forcast = data.list;
+    console.log(forcast);
+
+    forcast.forEach( function() {
+      let eachDay = data.list.dt_txt;
+      console.log(eachday);
+    })
+
+
     let timeStamp = data.list[i].dt_txt;
-    // console.log(dayjs(timeStamp).format('dddd'));
 
 
     $(`#dayPlus${i} .futDay`).text(dayjs(timeStamp).format('dddd'));
@@ -106,4 +113,14 @@ async function checkFutureWeather() {
 }
 
 
+
+function displayNextFiveDays() {
+  const now = dayjs();
+  for (let i=0; i<5; i++) {
+    const date = now.add(i, 'day');
+    const formattedDate = date.format('dddd');
+    console.log(formattedDate);
+  }
+}
+displayNextFiveDays();
 

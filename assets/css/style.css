@@ -58,24 +58,23 @@ main {
   margin-right: 20px;
   padding: 0;
   padding-right: 30px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: black;
 }
 #todayDate {
   font-size: 1rem;
 }
-
 #displayWeek {
   display: flex;
   height: 40%;
   border: 2px solid green
 }
-.weekForcast {
+.weekForecast {
   width: 20%;
   padding: 10px;
   border: 1px solid green;
 }
-.weekForcast p {
+.weekForecast p {
   margin: 5px;
   padding: 0;
 }
