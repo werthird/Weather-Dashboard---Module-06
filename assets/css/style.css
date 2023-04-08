@@ -2,38 +2,27 @@
   box-sizing: border-box;
   font-size: 12px;
   color: white;
-  /* border: 1px solid green; */
 }
-
 body {
   background-color: black;
 }
-
 main {
   display: flex;
   min-height: 100vh;
 }
-
 #container {
   display: flex;
   margin: auto;
   height: 500px;
   width: 1000px;
-  background-image: url(../images/timo-volz-K2jUGU6ttO0-unsplash.jpg);
+  background-image: url(../images/simeon-muller-Io9VYJorLuc-unsplash.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 #search,
 #display {
   height: 100%;
 }
-
-
-
-
-
-
 
 /* DISPLAY DIV */
 #display {
@@ -44,12 +33,12 @@ main {
   justify-content: center;
   align-items: flex-end;
   height: 60%;
-  border: 2px solid green;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
 }
 #temp h1 {
   font-size: 5rem;
-  color: black;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 /* the p tags */
 .location {
@@ -58,32 +47,32 @@ main {
   margin-right: 20px;
   padding: 0;
   padding-right: 30px;
-  font-size: 2rem;
-  color: black;
+  font-size: 2.3rem;
+}
+#inputLocationResult {
+  font-weight: normal;
 }
 #todayDate {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  padding-bottom: 10px;
 }
 #displayWeek {
   display: flex;
   height: 40%;
-  border: 2px solid green
+  align-items: flex-end;
+}
+.forcastTitle {
+  flex-grow: 2;
 }
 .weekForecast {
   width: 20%;
   padding: 10px;
-  border: 1px solid green;
+  border-top: 2px solid grey;
 }
 .weekForecast p {
   margin: 5px;
   padding: 0;
 }
-
-
-
-
-
-
 
 /* SEARCH DIV */
 #search {
@@ -120,9 +109,14 @@ main {
   margin-top: 20px;
   margin-right: 20px;
   border-bottom: 2px solid grey;
+  height: 50%;
   max-height: 50%;
-  
 }
+    #preSearch {
+      border: none;
+      background: rgba(0, 0, 0, 0);
+      text-transform: capitalize;
+    }
 #todayWeatherDetails {
   margin-top: 20px;
   margin-right: 20px;

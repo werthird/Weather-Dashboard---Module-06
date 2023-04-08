@@ -16,3 +16,11 @@ index ideas
 Functions 
  - Grab input from user about which city to show weather from
  - Grab weather info from that specified city and display current weather and the forcast for the next five days
+
+
+
+grab anything from local storage and add to array
+  - check if duplicate
+  - check if empty
+array is called array
+local storage string is called cities
