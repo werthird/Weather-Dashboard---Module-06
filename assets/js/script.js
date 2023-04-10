@@ -4,9 +4,6 @@
 // Button to look up city
 const searchButton = document.querySelector('#searchButton');
 
-
-
-
 /* ===================================================================================
 ---------------       GLOBAL VARIABLES         ---------------
 ====================================================================================*/
@@ -14,15 +11,11 @@ let cityName = '';
 let currentUrl = '';
 let futureUrl = '';
 
-
-
 /* ===================================================================================
----------------       WEATHER VARIABLES         ---------------
+---------------       API KEY AND URL         ---------------
 ====================================================================================*/
 const apiKey = '&appid=3be2b2b6acc21e3760901d15acf91f72';
 const weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast/daily?units=imperial&cnt=6&q=';
-
-
 
 /* ===================================================================================
 ---------------       CLOCK FUNCTION         ---------------
@@ -33,8 +26,6 @@ $(document).ready(function() {
     $('#todayDate').text(clock);
   }, 1000);
 });
-
-
 
 /* ===================================================================================
 ---------------       SEARCH TRACK FUNCTION         ---------------
@@ -83,9 +74,21 @@ function track () {
 };
 
 
-/* ===================================================================================
----------------       SEARCH HISTORY FUNCTION         ---------------
-====================================================================================*/
+
+
+
+/* ============= CLICK FUNCTION  - Run Code =============== */
+searchButton.addEventListener('click', function() {
+  let searchInput = $('#searchInput').val();
+  cityName = searchInput.toLowerCase().replaceAll(' ', '+');
+  currentUrl = `${weatherUrl}${cityName}${apiKey}`;
+
+  searchHistory();
+  checkCurrentWeather();
+});
+
+
+/* ============= PREVIOUS SEARCH FUNCTION =============== */
 function searchHistory () {
   //grab value of input
   const searchInput = $('#searchInput').val();
@@ -95,6 +98,10 @@ function searchHistory () {
   p.append(button);
   $('#previousSearchDiv').prepend(p);
 
+  searchAgain();
+};
+
+function searchAgain() {
   let reload = document.querySelector('#preSearch');
   reload.addEventListener('click', function() {
     $('#searchInput').val(searchInput);
@@ -103,35 +110,7 @@ function searchHistory () {
 };
 
 
-
-
-/* ===================================================================================
----------------       CLICK FUNCTION         ---------------
-====================================================================================*/
-/* Each time the searchButton is clicked:
-    - Grab the value of the searchInput
-    - Change it to lower case, replace all spaces with a +, then assign it to empty string of cityName
-    - Build the url from the apiUrl, apiKey, and cityName
-*/
-searchButton.addEventListener('click', function() {
-  const searchInput = $('#searchInput').val();
-  cityName = searchInput.toLowerCase().replaceAll(' ', '+');
-  currentUrl = `${weatherUrl}${cityName}${apiKey}`;
-
-  searchHistory();
-  checkCurrentWeather();
-});
-
-
-/* ===================================================================================
----------------       CURRENT WEATHER FUNCTION         ---------------
-====================================================================================*/
-/* This function will:
-    - Fetch the url and put it in a response variable
-    - Change that response to json and store in variable data
-    - Change the text content of the temp h1
-    - Change the text content of the location p
-*/
+/* ============= CURRENT WEATHER FUNCTION =============== */
 async function checkCurrentWeather() {
   //grab data from api
   const response = await fetch(currentUrl);
@@ -166,5 +145,23 @@ async function checkCurrentWeather() {
     $(`#dayPlus${i} .icon`).html(icon);
   };
 
+  //clear input text field
+  let searchInput = $('#searchInput').val('');
+
   track();
 };
+
+
+
+/*
+To Do:
+  - allow only five previous seraches in previous search div
+  - load previous search div into local storage
+  - clean up code and comments
+  - build readme
+  - clean up css and html files
+  - delete pseudocode
+  - take screen shot
+  - add function to change background depending on weather
+  - 
+*/
