@@ -37,7 +37,7 @@ THEN I am again presented with current and future conditions for that city
 ## Mock-Up
 Here is a link to the loaded webpage, and a screen shot of the landing page.
 
-[Visit the page here](https://werthird.github.io/ucf-module-05-challenge/)
+[Visit the page here](https://werthird.github.io/Weather-Dashboard---Module-06/)
 
 ![Work Day Scheduler Landing Page Screenshot](/assets/images/weather-dashboard-screenshot.jpg "Work Day Scheduler Landing Page Screenshot").
 
