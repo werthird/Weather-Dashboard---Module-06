@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 14px;
   color: white;
 }
 body {
@@ -112,7 +112,7 @@ main {
   height: 50%;
   max-height: 50%;
 }
-    #preSearch {
+    .preSearch {
       border: none;
       background: rgba(0, 0, 0, 0);
       text-transform: capitalize;

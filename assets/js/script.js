@@ -1,41 +1,30 @@
-/* ===================================================================================
----------------       GRAB ELEMENTS FROM PAGE         ---------------
-====================================================================================*/
-// Button to look up city
+// ==================== GRAB ELEMENTS FROM PAGE ====================
 const searchButton = document.querySelector('#searchButton');
 
-/* ===================================================================================
----------------       GLOBAL VARIABLES         ---------------
-====================================================================================*/
+// ==================== GLOBAL VARIABLES ====================
 let cityName = '';
 let currentUrl = '';
 let futureUrl = '';
 
-/* ===================================================================================
----------------       API KEY AND URL         ---------------
-====================================================================================*/
+// ==================== API KEY AND URL  ====================
 const apiKey = '&appid=3be2b2b6acc21e3760901d15acf91f72';
 const weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast/daily?units=imperial&cnt=6&q=';
 
-/* ===================================================================================
----------------       CLOCK FUNCTION         ---------------
-====================================================================================*/
-$(document).ready(function() {
+
+// ==================== CLOCK FUNCTION ====================
+$(function() {
   setInterval(function () {
     let clock = dayjs().format('h:mma - dddd, MMM DD, YYYY');
     $('#todayDate').text(clock);
   }, 1000);
 });
 
-/* ===================================================================================
----------------       SEARCH TRACK FUNCTION         ---------------
-====================================================================================*/
 
+// ==================== SEARCH TRACK FUNCTION  ====================
 let array;
 let duplicateTracker = false;
 
-
-// ==================== UPDATE FROM LOCAL STORAGE ====================
+// ==================== UPDATE FROM LOCAL STORAGE
 // Checks if local storage already has searches stored
 if ( localStorage.getItem('searches') ) {
   const stringArray = localStorage.getItem('searches');
@@ -45,36 +34,38 @@ if ( localStorage.getItem('searches') ) {
 };
 
 
-// ==================== SEND TO LOCAL STORAGE FUNCTION ====================
+// ==================== SEND TO LOCAL STORAGE FUNCTION
 function track () {
-  //grab value of input
-  const searchInput = $('#searchInput').val();
-  //put input into object
+  //make object
   let preSearch = {
-    city: searchInput,
+    city: cityName,
   }
-  // ====== Loop through the array to check if there is any match to previousSearch
+  //loop through the array to check if there is any match to previousSearch
   for (let i=0; i<array.length; i++) {
     if (array[i].city === preSearch.city) {
-  // ====== Replace the existing object with 
       array[i] = preSearch;
-  // ====== Update tracker so that task array can be pushed
+      //update tracker so that array can be pushed
       duplicateTracker = true;
       break;
     };
   };
-  // ====== Push task object into array if tracker is true
+  //push preSearch object into array if tracker is true
   if (!duplicateTracker) {
-    array.push(preSearch);
+    array.unshift(preSearch);
   };
-  // ====== Change array into string
+  //reset duplicateTracker
+  duplicateTracker = false;
   const arrayString = JSON.stringify(array);
-  // ====== Send arrayString into local storage
   localStorage.setItem('searches', arrayString);
 };
 
-
-
+// ==================== BUILD PREVIOUS SEARCH FROM STORAGE
+$(function() {
+  array.forEach(function(item){
+    cityName = item.city.replaceAll('+', ' ');
+    searchHistory();
+  });
+});
 
 
 /* ============= CLICK FUNCTION  - Run Code =============== */
@@ -88,25 +79,36 @@ searchButton.addEventListener('click', function() {
 });
 
 
-/* ============= PREVIOUS SEARCH FUNCTION =============== */
+/* ============= BUILD PREVIOUS SEARCH FUNCTION =============== */
 function searchHistory () {
-  //grab value of input
-  const searchInput = $('#searchInput').val();
-  //build p and button and append to page
-  let p = $('<p>');
-  let button = $('<button>').text(searchInput).attr('id', 'preSearch');
-  p.append(button);
-  $('#previousSearchDiv').prepend(p);
+    //build p and button, assign value and append to page
+    let p = $('<p>');
+    let button = $('<button>').text(cityName).attr('class', 'preSearch');
+    p.append(button);
+    $('#previousSearchDiv').prepend(p);
 
-  searchAgain();
+    let reload = document.querySelector('.preSearch');
+    reload.addEventListener('click', searchAgain);
+
+    searchLimit();
 };
 
-function searchAgain() {
-  let reload = document.querySelector('#preSearch');
-  reload.addEventListener('click', function() {
-    $('#searchInput').val(searchInput);
-    checkCurrentWeather();
-  });
+/* ============= LIMIT SEARCH HISTORY FUNCTION =============== */
+function searchLimit() {
+  let preSearchDiv = document.getElementById('previousSearchDiv');
+  let numPTags = preSearchDiv.getElementsByTagName('p').length;
+  if (numPTags >= 5) {
+    preSearchDiv.removeChild(preSearchDiv.lastChild)
+  }
+};
+
+
+/* ============= RUN PREVIOUS SEARCH FUNCTION =============== */
+function searchAgain(event) {
+  let preSearch = event.target.textContent;
+  cityName = preSearch.replaceAll(' ', '+');
+  currentUrl = `${weatherUrl}${cityName}${apiKey}`;
+  checkCurrentWeather();
 };
 
 
@@ -145,21 +147,17 @@ async function checkCurrentWeather() {
     $(`#dayPlus${i} .icon`).html(icon);
   };
 
+  track();
+
   //clear input text field
   let searchInput = $('#searchInput').val('');
-
-  track();
 };
 
 
 
 /*
 To Do:
-  - allow only five previous seraches in previous search div
-  - load previous search div into local storage
-  - clean up code and comments
   - build readme
-  - clean up css and html files
   - delete pseudocode
   - take screen shot
   - add function to change background depending on weather
