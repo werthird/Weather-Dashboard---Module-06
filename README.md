@@ -43,7 +43,7 @@ Here is a link to the loaded webpage, and a screen shot of the landing page.
 
 ----------------------
 ## Notes
-NA
+As you are able to see in the screenshot that is provided in this readme, the whole content fits on a 14in, 1920x1080 pixels, screen. I don't know why GitHubs deployment of the site change is so now it needs to be scrolled. There will be an update to this site soon to help eliminate the scrolling need.
 
 ----------------------
 ## Author
