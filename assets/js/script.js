@@ -1,5 +1,6 @@
 // ==================== GRAB ELEMENTS FROM PAGE ====================
 const searchButton = document.querySelector('#searchButton');
+const container = document.querySelector('.container');
 
 // ==================== GLOBAL VARIABLES ====================
 let cityName = '';
@@ -118,6 +119,11 @@ async function checkCurrentWeather() {
   const response = await fetch(currentUrl);
   let data = await response.json();
 
+  //check weather status
+  if (data.list[0].weather[0].description == 'partly cloudy') {
+    container.attr('id', 'cloudy-sky')
+  }
+
   //append data to current section
   $('#temp h1').text(data.list[0].temp.day.toFixed(0) + '\u00B0');
   $('#inputLocationResult').text(data.city.name);
@@ -158,8 +164,6 @@ async function checkCurrentWeather() {
 /*
 To Do:
   - build readme
-  - delete pseudocode
   - take screen shot
   - add function to change background depending on weather
-  - 
 */

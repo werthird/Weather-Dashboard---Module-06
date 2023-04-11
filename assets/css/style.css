@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 17px;
   color: white;
 }
 body {
@@ -10,15 +10,32 @@ main {
   display: flex;
   min-height: 100vh;
 }
-#container {
+.container {
   display: flex;
   margin: auto;
-  height: 500px;
-  width: 1000px;
-  background-image: url(../images/simeon-muller-Io9VYJorLuc-unsplash.jpg);
+  padding-right: 0;
+  height: 600px;
+  width: 1200px;
+  background-image: url(../images/rain.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
+    /* If wanting to change background based on weather condition */
+    #rain {
+      background-image: url(../images/rain.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    #clear-sky {
+      background-image: url(../images/clear-sky.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    #cloudy-sky {
+      background-image: url(../images/cloudy.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 #search,
 #display {
   height: 100%;
@@ -36,7 +53,7 @@ main {
   padding-bottom: 60px;
 }
 #temp h1 {
-  font-size: 5rem;
+  font-size: 6rem;
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -47,13 +64,13 @@ main {
   margin-right: 20px;
   padding: 0;
   padding-right: 30px;
-  font-size: 2.3rem;
+  font-size: 3rem;
 }
 #inputLocationResult {
   font-weight: normal;
 }
 #todayDate {
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding-bottom: 10px;
 }
 #displayWeek {
